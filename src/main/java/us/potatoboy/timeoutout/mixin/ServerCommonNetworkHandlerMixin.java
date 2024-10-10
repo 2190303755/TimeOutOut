@@ -1,14 +1,14 @@
 package us.potatoboy.timeoutout.mixin;
 
-import net.minecraft.server.network.ServerCommonNetworkHandler;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import us.potatoboy.timeoutout.TimeOutOut;
 
-@Mixin(ServerCommonNetworkHandler.class)
+@Mixin(ServerPlayNetworkHandler.class)
 public final class ServerCommonNetworkHandlerMixin {
-    @ModifyConstant(method = "baseTick", constant = {
+    @ModifyConstant(method = "tick", constant = {
             @Constant(longValue = 15000L)
     })
     private long getKeepAlivePacketInterval(long interval) {
